@@ -1,0 +1,103 @@
+swagger: '2.0'
+host: glocally-3fwfj6eb6l3cs.apigateway.decoded-nebula-331116.cloud.goog
+x-google-endpoints:
+- name: glocally-3fwfj6eb6l3cs.apigateway.decoded-nebula-331116.cloud.goog
+  allowCors: True
+info:
+  title: /rest/api/v1/masterdata
+  description: MasterData Apis Glocally's Delivery API
+  version: 1.0.0
+schemes:
+- https
+produces:
+- application/json
+x-google-backend:
+  address: https://glocally-masterdata-y2it5hgwrq-uc.a.run.app
+security:
+- api_key: []
+paths:
+    /rest/api/v1/masterdata/order:
+      post:
+        summary: order
+        operationId: postorder
+        parameters:
+
+        responses:
+          '200':
+            description: A successful response
+            schema:
+              type: string
+        security:
+        - auth0_jwt: []
+
+      get:
+        summary: order
+        operationId: getorder
+        parameters:
+        - in: header
+          name: deliveryId
+          type: string
+          description: deliveryId for a specific delivery
+        responses:
+          '200':
+            description: A successful response
+            schema:
+              type: string
+        security:
+        - auth0_jwt: []
+
+    /rest/api/v1/masterdata/order/{deliveryId}:
+      delete:
+        summary: order
+        operationId: deleteorder
+        parameters:
+          - in: path
+            name: deliveryId
+            description: deliveryId for a specific delivery
+            type: string
+            required: true
+        responses:
+          '200':
+            description: A successful response
+            schema:
+              type: string
+        security:
+        - auth0_jwt: []
+      # put:
+      #   summary: order
+      #   operationId: putorder
+      #   parameters:
+      #     - in: path
+      #       name: order_id
+      #       description: accountBenifitId of target account Benifit
+      #       type: string
+      #       required: true
+      #   responses:
+      #     '200':
+      #       description: A successful response
+      #       schema:
+      #         type: string
+      #   security:
+      #   - auth0_jwt: []
+
+    /rest/api/v1/token:
+      get:
+        summary: token
+        operationId: gettoken
+        responses:
+          '200':
+            description: A successful response
+            schema:
+              type: string
+
+
+
+
+securityDefinitions:
+  auth0_jwt:
+    authorizationUrl: "https://dev-l2byasx8.us.auth0.com/authorize"
+    flow: "implicit"
+    type: "oauth2"
+    x-google-issuer: "https://dev-l2byasx8.us.auth0.com/"
+    x-google-jwks_uri: "https://dev-l2byasx8.us.auth0.com/.well-known/jwks.json"
+    x-google-audiences: "https://dev-l2byasx8.us.auth0.com/api/v2/"
